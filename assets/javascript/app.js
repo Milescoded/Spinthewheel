@@ -2,11 +2,12 @@
 var movieArray = [];
 var data = [];
 //var apikey = "mvce6zcsew5md4qhrgqzgjuw";
-var apikey = "f2rwg4z4xzsj7vz3mhnfq9fn";
-//var apikey = "m8zfezvnzgt2uda46zuqe9e7";
+//var apikey = "f2rwg4z4xzsj7vz3mhnfq9fn";
+var apikey = "m8zfezvnzgt2uda46zuqe9e7";
 var baseUrl = "https://data.tmsapi.com/v1.1";
 var showtimesUrl = baseUrl + '/movies/showings';
-var zipCode = "23222";
+//var zipCode = "";
+var zipCode = "23222";/////////////////////////////////////////////////////////////////  ZIP CODE!!!!!!!!!
 var d = new Date();
 var today = d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
 var randomRest;
@@ -20,15 +21,27 @@ var restArray = [];
 var queryURL = "https://developers.zomato.com/api/v2.1/search?entity_id=1219&entity_type=city&count=100";
 var queryURLl = "0356c6221d55cd4bfb3231fee709ccec";
 // Zomato api settings
+// var settings = {
+//   "async": true,
+//   "crossDomain": true,
+//   "url": "https://developers.zomato.com/api/v2.1/search?entity_id=1219&entity_type=city&count=100",
+//   "method": "GET",
+//   "headers": {
+//     "user-key": "0356c6221d55cd4bfb3231fee709ccec",
+//   }
+// };
+var zomatoBaseURL = "https://developers.zomato.com/api/v2.1/search?entity_id=1219&entity_type=city&count=100"
 var settings = {
-  "async": true,
-  "crossDomain": true,
-  "url": "https://developers.zomato.com/api/v2.1/search?entity_id=1219&entity_type=city&count=100",
-  "method": "GET",
-  "headers": {
-    "user-key": "0356c6221d55cd4bfb3231fee709ccec",
-  }
+	"async": true,
+	"crossDomain": true,
+	"url": zomatoBaseURL,
+	"method": "GET",
+	"headers": {
+		"user-key": "0356c6221d55cd4bfb3231fee709ccec",
+	}
 };
+
+
 // Assigns a random restaurant from our zomato api results
 function randomRestaurant() {
   		randomRest = restArray[Math.floor(Math.random() * 19)];
@@ -158,7 +171,7 @@ $.ajax(settings).done(function (response) {
 // Calls Gracenote      
 $.ajax({
     url: showtimesUrl,
-    data: { startDate: today,
+	data: { startDate: today,
     zip: zipCode,
     jsonp: "dataHandler",
     api_key: apikey
@@ -171,7 +184,14 @@ function dataHandler(data) {
     for (var j = 0; j < data.length; j++) {
         movieArray.push(data[j]);
         	}
-        }
+		}
+$(document).on('click', '#zipSubmitButton', function () {
+
+	//zipSubmitBox
+	zipCode = document.getElementById("zipSubmitBox").value;
+	console.log("hi Jared" + zipCode);
+	return zipCode;
+});
 $(document).ready(function() {
 	// Event listener for user clicks to assign results or spin
     $(document).on('click', '#activity', function(spin) {
@@ -198,6 +218,7 @@ $(document).ready(function() {
 	 	document.getElementById("both").style="opacity: 1";
 	 	document.getElementById("dinner").style="opacity: 0.6";
 	 	randomRestaurant ();
-	 	});
+		 });
+	
 });
 
