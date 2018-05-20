@@ -5,4 +5,4 @@ Have you every felt like you didn't know where to eat or what movie to watch? We
 ![start](assets/images/png/start.png)
 
 
-![result](assets/images/png/result.png)
+![result](assets/images/png/results.png)
