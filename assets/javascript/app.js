@@ -222,3 +222,12 @@ $(document).ready(function() {
 	
 });
 
+
+
+/////  Get Location -> then api calls
+
+/////  Pick Button
+
+/////  Spin  
+
+/////  
