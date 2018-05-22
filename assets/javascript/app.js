@@ -30,16 +30,7 @@ var queryURLl = "0356c6221d55cd4bfb3231fee709ccec";
 //     "user-key": "0356c6221d55cd4bfb3231fee709ccec",
 //   }
 // };
-var zomatoBaseURL = "https://developers.zomato.com/api/v2.1/search?entity_id=1219&entity_type=city&count=100"
-var settings = {
-	"async": true,
-	"crossDomain": true,
-	"url": zomatoBaseURL,
-	"method": "GET",
-	"headers": {
-		"user-key": "0356c6221d55cd4bfb3231fee709ccec",
-	}
-};
+
 
 
 // Assigns a random restaurant from our zomato api results
@@ -163,11 +154,36 @@ function spin () {
 		});
 	}
 // Calls the Zomato and creates an array of objects with the results
-$.ajax(settings).done(function (response) {
-  	for (var i = 0; i < 19; i++) {
-    	restArray.push(response.restaurants[i]);
-  		} 
-	 });
+function zomatoAjax(zipCode) {
+	var zomatoBaseURL = "https://developers.zomato.com/api/v2.1/search?entity_id="
+	var zomatoZip = "1219"
+	var zomatoBaseURL2 = "&entity_type=city&count=100"
+	var settings = {
+		"async": true,
+		"crossDomain": true,
+		"url": zomatoBaseURL + zipCode + zomatoBaseURL2,
+		"method": "GET",
+		"headers": {
+			"user-key": "0356c6221d55cd4bfb3231fee709ccec",
+		}
+	};
+	console.log(settings);
+	$.ajax(settings).done(function (response) {
+		for (var i = 0; i < 19; i++) {
+			restArray.push(response.restaurants[i]);
+		}
+	});
+	//https://maps.googleapis.com/maps/api/place/textsearch/xml?query=restaurants+in+Sydney&key=YOUR_API_KEY
+}
+$(document).on('click', '#zipSubmitButton', function () {
+
+	//zipSubmitBox
+	zipCode = document.getElementById("zipSubmitBox").value;
+	console.log("hi Jared" + zipCode);
+	zomatoAjax(zipCode);
+	return zipCode;
+});
+
 // Calls Gracenote      
 $.ajax({
     url: showtimesUrl,
@@ -185,13 +201,7 @@ function dataHandler(data) {
         movieArray.push(data[j]);
         	}
 		}
-$(document).on('click', '#zipSubmitButton', function () {
 
-	//zipSubmitBox
-	zipCode = document.getElementById("zipSubmitBox").value;
-	console.log("hi Jared" + zipCode);
-	return zipCode;
-});
 $(document).ready(function() {
 	// Event listener for user clicks to assign results or spin
     $(document).on('click', '#activity', function(spin) {
