@@ -175,25 +175,30 @@ function zomatoAjax(zipCode) {
 	});
 	//https://maps.googleapis.com/maps/api/place/textsearch/xml?query=restaurants+in+Sydney&key=YOUR_API_KEY
 }
+// Calls Gracenote 
+function movieAjax(zipCode) {
+	$.ajax({
+		url: showtimesUrl,
+		data: {
+			startDate: today,
+			zip: zipCode,
+			jsonp: "dataHandler",
+			api_key: apikey
+		},
+		dataType: "jsonp",
+	});
+}
 $(document).on('click', '#zipSubmitButton', function () {
 
 	//zipSubmitBox
 	zipCode = document.getElementById("zipSubmitBox").value;
 	console.log("hi Jared" + zipCode);
 	zomatoAjax(zipCode);
+	movieAjax(zipCode);
 	return zipCode;
 });
 
-// Calls Gracenote      
-$.ajax({
-    url: showtimesUrl,
-	data: { startDate: today,
-    zip: zipCode,
-    jsonp: "dataHandler",
-    api_key: apikey
-    },          
-    dataType: "jsonp",
-    });
+
 // Creates an array of objects with the results  
 function dataHandler(data) {
 	console.log(data)
