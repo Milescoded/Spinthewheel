@@ -9,7 +9,7 @@
 *{	margin:0;	padding:0; }
 
 body{
-	background:black;
+	background:#0B0D1E;
 	color:#fff;
 	font-size:18px;
 	font-family: 'Exo 2', sans-serif;
@@ -325,4 +325,61 @@ h1 {
 
 
 /* Jared's input 12.14.17 */
+
+/*footer*/
+/* styles.css */
+
+/* styles.css */
+
+/* styles.css */
+
+/* styles.css */
+/* styles.css */
+
+/* styles.css */
+
+/* styles.css */
+
+.partner-logos {
+	display: flex; /* Display logos in a row */
+	overflow: hidden; /* Hide logos that move out of the container */
+  }
+  
+/* styles.css */
+
+/* styles.css */
+
+.partner-logos {
+	display: flex; /* Display logos in a row */
+	justify-content: space-around; /* Add space between logos */
+	align-items: center; /* Center logos vertically */
+  }
+  
+  .partner-logos img {
+	width: 100px; /* Set width of logos */
+	height: 100px; /* Set height of logos */
+	animation: move 3s ease infinite; /* Add animation to move logos */
+	position: relative; /* Set position to relative for animations */
+  }
+  
+  @keyframes move {
+	0%,
+	100% {
+	  transform: translateY(0); /* Move logo up to disappear and come back */
+	  opacity: 1; /* Set opacity to 1 at the start and end of animation */
+	}
+	50% {
+	  transform: translateY(-20px); /* Move logo up to disappear */
+	  opacity: 0; /* Set opacity to 0 at the middle of the animation */
+	}
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
